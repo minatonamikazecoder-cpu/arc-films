@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — ARC Films</title>
+  <meta name="description" content="ARC Films offers video production, motion graphics, logo design, brand identity, 3D animation, and thumbnail design services.">
+  <link rel="icon" href="https://res.cloudinary.com/dkodvlw5s/image/upload/v1737427727/favicon_rhu5o4.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .services-page { padding-top: var(--nav-h); }
+    
+    .services-page-hero {
+      padding: 100px 5% 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .services-page-title {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 12vw, 180px);
+      line-height: 0.85;
+      margin-bottom: 24px;
+    }
+    
+    .services-page-title .line2 {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--white-50);
+      font-size: clamp(56px, 9vw, 140px);
+    }
+    
+    .services-page-sub {
+      font-size: 16px;
+      color: var(--white-50);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+    
+    /* Big Service Cards */
+    .service-full-list {
+      padding: 80px 5% 120px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .service-full-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+      transition: all 0.3s;
+    }
+    
+    .service-full-item:first-child { border-top: 1px solid var(--border); }
+    
+    .service-full-item:hover .service-full-num {
+      color: var(--blue-bright);
+    }
+    
+    .service-full-left { position: sticky; top: 120px; }
+    
+    .service-full-num {
+      font-family: var(--font-display);
+      font-size: 100px;
+      color: var(--white-08);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color 0.4s;
+    }
+    
+    .service-full-title {
+      font-family: var(--font-display);
+      font-size: 48px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    
+    .service-full-cat {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+    }
+    
+    .service-full-right { }
+    
+    .service-full-desc {
+      font-size: 18px;
+      line-height: 1.9;
+      color: var(--white-70);
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+    
+    .service-full-includes h4 {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white-30);
+      margin-bottom: 24px;
+    }
+    
+    .service-full-includes ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    
+    .service-full-includes li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--white-70);
+    }
+    
+    .service-full-includes li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--blue-bright);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    
+    .service-full-preview {
+      aspect-ratio: 16/9;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    
+    .service-full-preview video,
+    .service-full-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    @media (max-width: 900px) {
+      .service-full-item { grid-template-columns: 1fr; gap: 40px; }
+      .service-full-left { position: static; }
+      .service-full-num { font-size: 60px; }
+      .service-full-includes ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+          <path d="M40 3 A30 30 0 0 1 70 33" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M40 3 A30 30 0 0 0 10 33" stroke="white" stroke-width="0.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <text x="7" y="38" font-family="Bebas Neue" font-size="18" fill="white" letter-spacing="5">ARC</text>
+        </svg>
+        <span class="nav-logo-sub">FILMS</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="work.html" class="nav-link">Work</a>
+        <a href="services.html" class="nav-link active">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a href="contact.html" class="btn-contact">Let's Talk</a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <div class="nav-mobile-inner">
+        <a href="index.html" class="nav-mobile-link">Home</a>
+        <a href="work.html" class="nav-mobile-link">Work</a>
+        <a href="services.html" class="nav-mobile-link">Services</a>
+        <a href="about.html" class="nav-mobile-link">About</a>
+        <a href="contact.html" class="nav-mobile-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="services-page">
+    <div class="services-page-hero">
+      <div class="section-label">
+        <span>Services</span>
+        <span>What We Offer</span>
+      </div>
+      <h1 class="services-page-title">
+        <span>Six Ways We</span><br>
+        <span class="line2">Tell Your Story</span>
+      </h1>
+      <p class="services-page-sub">
+        Every discipline we practice is built on the same foundation: relentless attention to craft, deep respect for your vision, and an obsessive commitment to excellence.
+      </p>
+    </div>
+    
+    <div class="service-full-list">
+      
+      <!-- 1. Video Production -->
+      <div class="service-full-item" id="service-video">
+        <div class="service-full-left">
+          <div class="service-full-num">01</div>
+          <h2 class="service-full-title">Video Production</h2>
+          <span class="service-full-cat">Film & Cinema</span>
+        </div>
+        <div class="service-full-right">
+          <p class="service-full-desc">
+            Cinematic storytelling from concept to final cut. We handle everything from pre-production planning to color grading, sound design, and delivery. Films that don't just look beautiful — they move people.
+          </p>
+          <div class="service-full-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Concept & Scriptwriting</li>
+              <li>Cinematography Direction</li>
+              <li>On-Set Production</li>
+              <li>Professional Editing</li>
+              <li>Color Grading & LUTs</li>
+              <li>Sound Design & Mix</li>
+              <li>Motion Graphics Integration</li>
+              <li>Platform-Optimized Delivery</li>
+            </ul>
+          </div>
+          <div class="service-full-preview">
+            <video autoplay muted loop playsinline>
+              <source src="https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427524/video_pwazu4.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 2. Motion Graphics -->
+      <div class="service-full-item" id="service-motion">
+        <div class="service-full-left">
+          <div class="service-full-num">02</div>
+          <h2 class="service-full-title">Motion Graphics</h2>
+          <span class="service-full-cat">Short Form Content</span>
+        </div>
+        <div class="service-full-right">
+          <p class="service-full-desc">
+            Short-form content, reels, and dynamic visual narratives crafted for maximum impact across every platform. Motion that communicates in seconds, but lingers for hours.
+          </p>
+          <div class="service-full-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Instagram / TikTok Reels</li>
+              <li>YouTube Shorts</li>
+              <li>Motion Title Sequences</li>
+              <li>Animated Infographics</li>
+              <li>Brand Motion Templates</li>
+              <li>Social Media Content Packs</li>
+            </ul>
+          </div>
+          <div class="service-full-preview">
+            <video autoplay muted loop playsinline>
+              <source src="https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427499/reel_qfz921.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 3. Logo Design -->
+      <div class="service-full-item" id="service-logo">
+        <div class="service-full-left">
+          <div class="service-full-num">03</div>
+          <h2 class="service-full-title">Logo Design</h2>
+          <span class="service-full-cat">Visual Identity</span>
+        </div>
+        <div class="service-full-right">
+          <p class="service-full-desc">
+            Marks that endure. We create logos that distill your brand's entire essence into a single symbol. Strategic, timeless, and built to work across every context — from business cards to billboards.
+          </p>
+          <div class="service-full-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Brand Discovery Session</li>
+              <li>3 Initial Concepts</li>
+              <li>2 Rounds of Revisions</li>
+              <li>All Vector File Formats</li>
+              <li>Dark/Light Variations</li>
+              <li>Icon/Mark Variants</li>
+              <li>Usage Guidelines</li>
+              <li>Brand Colour Palette</li>
+            </ul>
+          </div>
+          <div class="service-full-preview">
+            <img src="https://res.cloudinary.com/dkodvlw5s/image/upload/v1737427617/1_gipsva.png" alt="Logo Design Example" loading="lazy">
+          </div>
+        </div>
+      </div>
+      
+      <!-- 4. Brand Identity -->
+      <div class="service-full-item" id="service-branding">
+        <div class="service-full-left">
+          <div class="service-full-num">04</div>
+          <h2 class="service-full-title">Brand Identity</h2>
+          <span class="service-full-cat">Complete System</span>
+        </div>
+        <div class="service-full-right">
+          <p class="service-full-desc">
+            Complete visual identity systems. Beyond the logo — we build the entire visual language of your brand. Colour theory, typography, texture, pattern, and application across every touchpoint.
+          </p>
+          <div class="service-full-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Logo Suite</li>
+              <li>Colour System & Palette</li>
+              <li>Typography System</li>
+              <li>Pattern & Texture Library</li>
+              <li>Business Cards & Stationery</li>
+              <li>Social Media Kit</li>
+              <li>Brand Guidelines Doc</li>
+              <li>Brand Style Guide</li>
+            </ul>
+          </div>
+          <div class="service-full-preview">
+            <img src="https://res.cloudinary.com/dkodvlw5s/image/upload/v1737427591/1_ullhqs.png" alt="Brand Identity Example" loading="lazy">
+          </div>
+        </div>
+      </div>
+      
+      <!-- 5. 3D Animation -->
+      <div class="service-full-item" id="service-3d">
+        <div class="service-full-left">
+          <div class="service-full-num">05</div>
+          <h2 class="service-full-title">3D Animation</h2>
+          <span class="service-full-cat">Dimensional Art</span>
+        </div>
+        <div class="service-full-right">
+          <p class="service-full-desc">
+            Dimensional storytelling that blurs the line between art and technology. From hyper-realistic product visualizations to stylized abstract motion art — we build worlds in 3D that command attention.
+          </p>
+          <div class="service-full-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>3D Character Animation</li>
+              <li>Product Visualization</li>
+              <li>Architectural Renders</li>
+              <li>Logo 3D Animation</li>
+              <li>Environment Scenes</li>
+              <li>Abstract Motion Art</li>
+            </ul>
+          </div>
+          <div class="service-full-preview">
+            <video autoplay muted loop playsinline>
+              <source src="https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514508/3d_scene_1_2_zpi58f.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 6. Thumbnail Design -->
+      <div class="service-full-item" id="service-thumbnails">
+        <div class="service-full-left">
+          <div class="service-full-num">06</div>
+          <h2 class="service-full-title">Thumbnail Design</h2>
+          <span class="service-full-cat">Click Optimization</span>
+        </div>
+        <div class="service-full-right">
+          <p class="service-full-desc">
+            The scroll stops here. Click-stopping thumbnail art that converts browsers into viewers. Psychology-driven design that communicates your entire video's value proposition in a single glance.
+          </p>
+          <div class="service-full-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>YouTube Thumbnails</li>
+              <li>A/B Testing Variants</li>
+              <li>Custom Typography</li>
+              <li>Photo Manipulation</li>
+              <li>Platform-Optimized Sizing</li>
+              <li>Brand Consistency</li>
+            </ul>
+          </div>
+          <div class="service-full-preview">
+            <img src="https://res.cloudinary.com/dkodvlw5s/image/upload/v1737512064/Thumbnail_1_f7zjxd.png" alt="Thumbnail Example" loading="lazy">
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-bg"><div class="cta-noise"></div><div class="cta-grid-lines"></div></div>
+      <div class="cta-content">
+        <div class="cta-label">Ready to Start?</div>
+        <h2 class="cta-title"><span>Let's Make</span><br><span class="italic">Something Great</span></h2>
+        <p class="cta-desc">Tell us what you need. We'll tell you how we can make it extraordinary.</p>
+        <div class="cta-actions" style="margin-top:48px">
+          <a href="contact.html" class="btn-primary large"><span>Get a Quote</span><span class="btn-arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copy"><span>© 2025 ARC Films. All rights reserved.</span></div>
+        <div class="footer-back-top"><button onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to Top ↑</button></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
