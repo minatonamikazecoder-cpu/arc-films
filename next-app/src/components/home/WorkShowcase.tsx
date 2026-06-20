@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 interface ShowcaseDbItem {
@@ -213,7 +214,7 @@ export default function WorkShowcase({ items }: WorkShowcaseProps) {
                       <source src={item.mediaUrl} type="video/mp4" />
                     </video>
                   ) : (
-                    <img src={item.mediaUrl} alt={item.title} loading="lazy" />
+                    <Image src={item.mediaUrl} alt={item.title} fill sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw" style={{ objectFit: "cover" }} />
                   )}
                   <div className="work-item-overlay">
                     <Link href={item.href} className="work-item-link">

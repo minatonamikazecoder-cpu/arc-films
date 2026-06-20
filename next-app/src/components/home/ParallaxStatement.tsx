@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 interface BannerDbItem {
   section: string;
@@ -48,13 +49,16 @@ export default function ParallaxStatement({ banners }: ParallaxStatementProps) {
 
   return (
     <section className="statement-section" id="statementSection" ref={sectionRef}>
-      <div className="statement-bg">
-        <img
+      <div className="statement-bg" style={{ position: "relative" }}>
+        <Image
           src={imgUrl}
           alt="ARC Films behind the scenes"
           className="statement-bg-img"
           id="statementBgImg"
           ref={imgRef}
+          fill
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
         />
         <div className="statement-overlay"></div>
       </div>

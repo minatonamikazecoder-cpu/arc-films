@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { triggerRevalidation } from "@/lib/revalidate";
 import { dashboardStyles } from "./adminStyles";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -27,6 +28,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const interval = setInterval(fetchUnreadCount, 10000);
     return () => clearInterval(interval);
   }, [fetchUnreadCount]);
+
+  const [syncing, setSyncing] = useState(false);
+
+  const handleSyncCache = async () => {
+    setSyncing(true);
+    try {
+      await triggerRevalidation();
+      alert("Live site cache successfully updated!");
+    } catch (e) {
+      alert("Failed to sync cache: " + (e instanceof Error ? e.message : String(e)));
+    } finally {
+      setSyncing(false);
+    }
+  };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -70,6 +85,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
 
         <div style={dashboardStyles.logoutBtnContainer}>
+          <button 
+            onClick={handleSyncCache} 
+            disabled={syncing}
+            style={{
+              ...dashboardStyles.logoutBtn,
+              background: syncing ? "rgba(255,255,255,0.02)" : "rgba(59,130,246,0.08)",
+              color: syncing ? "#64748b" : "#60a5fa",
+              borderColor: syncing ? "rgba(255,255,255,0.05)" : "rgba(59,130,246,0.25)",
+              marginBottom: "10px"
+            }}
+          >
+            {syncing ? "Syncing..." : "Sync Live Site"}
+          </button>
           <button onClick={handleLogout} style={dashboardStyles.logoutBtn}>
             Log Out
           </button>

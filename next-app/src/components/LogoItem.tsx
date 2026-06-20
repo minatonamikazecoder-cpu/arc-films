@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
+import Image from "next/image";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 interface LogoItemProps {
@@ -42,8 +43,9 @@ export default function LogoItem({ src, alt, index }: LogoItemProps) {
         className="logo-item tilt-card"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        style={{ position: "relative" }}
       >
-        <img src={src} alt={alt} loading="lazy" />
+        <Image src={src} alt={alt} fill sizes="(max-width: 600px) 50vw, (max-width: 1200px) 25vw, 15vw" style={{ objectFit: "cover" }} />
       </div>
     </AnimateOnScroll>
   );

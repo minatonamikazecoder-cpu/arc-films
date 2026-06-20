@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 interface BannerDbItem {
@@ -104,11 +105,11 @@ export default function AboutStrip({ banners }: AboutStripProps) {
 
         <div className="about-right">
           <div className="about-img-stack">
-            <div className="about-img-main">
-              <img src={mainImgUrl} alt="ARC Films - Behind the Scenes" loading="lazy" />
+            <div className="about-img-main" style={{ position: "relative" }}>
+              <Image src={mainImgUrl} alt="ARC Films - Behind the Scenes" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover" }} />
             </div>
             <div className="about-img-accent">
-              <img src="/images/reel.png" alt="ARC Films - On Location" loading="lazy" />
+              <Image src="/images/reel.png" alt="ARC Films - On Location" width={400} height={180} style={{ width: "100%", height: "180px", objectFit: "cover" }} />
             </div>
             <div className="about-badge">
               <span className="badge-year">Est.</span>

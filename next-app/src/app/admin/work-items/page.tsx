@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { triggerRevalidation } from "@/lib/revalidate";
 import { dashboardStyles } from "../adminStyles";
 
 interface Category {
@@ -155,6 +156,7 @@ export default function WorkItemsPage() {
         setEditId(null);
         resetWorkItemForm();
         fetchWorkItems();
+        triggerRevalidation();
       } else {
         alert("Error: " + error.message);
       }
@@ -164,6 +166,7 @@ export default function WorkItemsPage() {
         alert("Work item created successfully!");
         resetWorkItemForm();
         fetchWorkItems();
+        triggerRevalidation();
       } else {
         alert("Error: " + error.message);
       }
@@ -174,7 +177,10 @@ export default function WorkItemsPage() {
   const deleteWorkItem = async (id: string) => {
     if (!confirm("Are you sure you want to delete this work item?")) return;
     const { error } = await supabase.from("work_items").delete().eq("id", id);
-    if (!error) fetchWorkItems();
+    if (!error) {
+      fetchWorkItems();
+      triggerRevalidation();
+    }
   };
 
   const startEditWorkItem = (item: WorkItem) => {

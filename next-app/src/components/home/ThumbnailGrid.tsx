@@ -1,3 +1,4 @@
+import Image from "next/image";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 export default function ThumbnailGrid() {
@@ -37,8 +38,9 @@ export default function ThumbnailGrid() {
               variant="card"
               delay={idx * 60}
               className="thumb-item"
+              style={{ position: "relative" }}
             >
-              <img src={thumb.src} alt={thumb.alt} loading="lazy" />
+              <Image src={thumb.src} alt={thumb.alt} fill sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 25vw" style={{ objectFit: "cover" }} />
             </AnimateOnScroll>
           ))}
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import CTASection from "@/components/home/CTASection";
 
@@ -158,6 +159,7 @@ export default function WorkPageClient({ categories, workItems }: WorkPageClient
                         variant="card"
                         delay={idx * 60}
                         className={itemClass}
+                        style={{ position: "relative" }}
                       >
                         {item.media_type === "youtube" ? (
                           <iframe
@@ -173,7 +175,7 @@ export default function WorkPageClient({ categories, workItems }: WorkPageClient
                             <source src={item.media_url} type="video/mp4" />
                           </video>
                         ) : (
-                          <img src={item.media_url} alt={item.alt_text || item.title} loading="lazy" />
+                          <Image src={item.media_url} alt={item.alt_text || item.title} fill sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw" style={{ objectFit: "cover" }} />
                         )}
 
                         {/* Title Info overlays for Video or when subtitle/title present */}

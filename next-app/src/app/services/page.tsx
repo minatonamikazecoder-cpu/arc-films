@@ -1,9 +1,10 @@
 import React from "react";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import CTASection from "@/components/home/CTASection";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 31536000; // Revalidate on-demand (indefinite cache, 1 year TTL)
 
 interface ServiceRow {
   id: string;
@@ -117,7 +118,7 @@ export default async function ServicesPage() {
                   )}
 
                   {service.preview_media_url && (
-                    <AnimateOnScroll variant="reveal" delay={300} className="service-full-preview">
+                    <AnimateOnScroll variant="reveal" delay={300} className="service-full-preview" style={{ position: "relative" }}>
                       {service.preview_media_type === "youtube" ? (
                         <iframe
                           src={service.preview_media_url}
@@ -132,7 +133,7 @@ export default async function ServicesPage() {
                           <source src={service.preview_media_url} type="video/mp4" />
                         </video>
                       ) : (
-                        <img src={service.preview_media_url} alt={service.title} loading="lazy" />
+                        <Image src={service.preview_media_url} alt={service.title} fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover" }} />
                       )}
                     </AnimateOnScroll>
                   )}

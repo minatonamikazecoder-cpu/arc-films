@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { triggerRevalidation } from "@/lib/revalidate";
 import { dashboardStyles } from "../adminStyles";
 
 interface Category {
@@ -70,6 +71,7 @@ export default function CategoriesPage() {
         setEditId(null);
         resetCategoryForm();
         fetchCategories();
+        triggerRevalidation();
       } else {
         alert("Error: " + error.message);
       }
@@ -79,6 +81,7 @@ export default function CategoriesPage() {
         alert("Category created successfully!");
         resetCategoryForm();
         fetchCategories();
+        triggerRevalidation();
       } else {
         alert("Error: " + error.message);
       }
@@ -89,7 +92,10 @@ export default function CategoriesPage() {
   const deleteCategory = async (id: string) => {
     if (!confirm("Are you sure you want to delete this category? All associated work items will be deleted!")) return;
     const { error } = await supabase.from("work_categories").delete().eq("id", id);
-    if (!error) fetchCategories();
+    if (!error) {
+      fetchCategories();
+      triggerRevalidation();
+    }
   };
 
   const startEditCategory = (cat: Category) => {

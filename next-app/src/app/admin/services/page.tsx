@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { triggerRevalidation } from "@/lib/revalidate";
 import { dashboardStyles } from "../adminStyles";
 
 interface Service {
@@ -127,6 +128,7 @@ export default function ServicesPage() {
         setEditId(null);
         resetServiceForm();
         fetchServices();
+        triggerRevalidation();
       } else {
         alert("Error: " + error.message);
       }
@@ -136,6 +138,7 @@ export default function ServicesPage() {
         alert("Service created successfully!");
         resetServiceForm();
         fetchServices();
+        triggerRevalidation();
       } else {
         alert("Error: " + error.message);
       }
@@ -146,7 +149,10 @@ export default function ServicesPage() {
   const deleteService = async (id: string) => {
     if (!confirm("Are you sure you want to delete this service?")) return;
     const { error } = await supabase.from("services").delete().eq("id", id);
-    if (!error) fetchServices();
+    if (!error) {
+      fetchServices();
+      triggerRevalidation();
+    }
   };
 
   const startEditService = (srv: Service) => {

@@ -7,6 +7,7 @@ interface AnimateOnScrollProps {
   className?: string;
   delay?: number; // delay in milliseconds
   variant?: "reveal" | "reveal-left" | "reveal-right" | "card";
+  style?: React.CSSProperties;
 }
 
 export default function AnimateOnScroll({
@@ -14,6 +15,7 @@ export default function AnimateOnScroll({
   className = "",
   delay = 0,
   variant = "reveal",
+  style: customStyle,
 }: AnimateOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -63,8 +65,9 @@ export default function AnimateOnScroll({
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0) scale(1)" : "translateY(40px) scale(0.96)",
         transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
+        ...customStyle,
       }
-    : undefined;
+    : customStyle;
 
   return (
     <div

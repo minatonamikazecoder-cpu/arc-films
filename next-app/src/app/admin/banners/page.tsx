@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { triggerRevalidation } from "@/lib/revalidate";
 import { dashboardStyles } from "../adminStyles";
 
 interface Banner {
@@ -101,6 +102,7 @@ export default function BannersPage() {
         setEditId(null);
         resetBannerForm();
         fetchBanners();
+        triggerRevalidation();
       } else {
         alert("Error: " + error.message);
       }
@@ -110,6 +112,7 @@ export default function BannersPage() {
         alert("Banner created successfully!");
         resetBannerForm();
         fetchBanners();
+        triggerRevalidation();
       } else {
         alert("Error: " + error.message);
       }
@@ -120,7 +123,10 @@ export default function BannersPage() {
   const deleteBanner = async (id: string) => {
     if (!confirm("Are you sure you want to delete this banner?")) return;
     const { error } = await supabase.from("banners").delete().eq("id", id);
-    if (!error) fetchBanners();
+    if (!error) {
+      fetchBanners();
+      triggerRevalidation();
+    }
   };
 
   const startEditBanner = (ban: Banner) => {

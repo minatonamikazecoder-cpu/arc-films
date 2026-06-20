@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { useVideoModal } from "@/components/layout/VideoModal";
 
@@ -32,8 +33,7 @@ export default function FeaturedReel() {
         <AnimateOnScroll variant="reveal" delay={300}>
           <div className="reel-player" id="reelPlayer">
             <div className="reel-thumb">
-              {/* Using standard image or next/image. Since styles expect 100% width and fit, let's use standard img to make sure no styling issues occur, or next/image unoptimized. Standard img is extremely safe for exact styling match. */}
-              <img src="/images/reel.png" alt="ARC Films Showreel" loading="lazy" />
+              <Image src="/images/reel.png" alt="ARC Films Showreel" fill sizes="(max-width: 900px) 100vw, 80vw" style={{ objectFit: "cover" }} />
               <div className="reel-overlay">
                 <button className="reel-play-btn" id="reelPlayBtn" onClick={handlePlayReel}>
                   <div className="reel-play-ring"></div>

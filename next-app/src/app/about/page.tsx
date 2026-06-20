@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import CTASection from "@/components/home/CTASection";
@@ -102,8 +103,8 @@ export default function AboutPage() {
         </div>
 
         <div className="about-hero-right">
-          <AnimateOnScroll variant="reveal" delay={300} className="about-hero-img h-full w-full">
-            <img src="/images/about.png" alt="Yash Pancholi - Founder & Creative Director of ARC Films" loading="lazy" />
+          <AnimateOnScroll variant="reveal" delay={300} className="about-hero-img h-full w-full" style={{ position: "relative" }}>
+            <Image src="/images/about.png" alt="Yash Pancholi - Founder & Creative Director of ARC Films" fill priority style={{ objectFit: "cover" }} sizes="(max-width: 900px) 100vw, 50vw" />
           </AnimateOnScroll>
           <div className="about-hero-badge">
             <span className="badge-year">Est.</span>
