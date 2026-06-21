@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — ARC Films</title>
+  <meta name="description" content="Start a project with ARC Films. Get in touch to discuss your film, brand identity, motion graphics, or 3D animation needs.">
+  <link rel="icon" href="https://res.cloudinary.com/dkodvlw5s/image/upload/v1737427727/favicon_rhu5o4.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Contact Page Specific */
+    .contact-page {
+      min-height: 100vh;
+      background: var(--black-rich);
+      padding-top: var(--nav-h);
+    }
+    
+    .contact-hero {
+      position: relative;
+      padding: 120px 5% 80px;
+      overflow: hidden;
+    }
+    
+    .contact-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(59,130,246,0.08), transparent 70%);
+    }
+    
+    .contact-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 12vw, 180px);
+      line-height: 0.85;
+      margin-bottom: 24px;
+    }
+    
+    .contact-title .line2 {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(60px, 10vw, 150px);
+      color: var(--white-50);
+    }
+    
+    .contact-sub {
+      font-size: 16px;
+      color: var(--white-50);
+      line-height: 1.8;
+      max-width: 500px;
+      margin-bottom: 80px;
+    }
+    
+    .contact-body {
+      padding: 0 5% 120px;
+    }
+    
+    .contact-body-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    
+    .contact-info h3 {
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--blue-bright);
+      margin-bottom: 40px;
+    }
+    
+    .contact-detail {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .contact-detail:last-of-type { border-bottom: none; }
+    
+    .contact-detail-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white-30);
+      margin-bottom: 12px;
+    }
+    
+    .contact-detail-val {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--white);
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+    
+    .contact-detail-val a {
+      transition: color 0.3s;
+    }
+    
+    .contact-detail-val a:hover { color: var(--blue-bright); }
+    
+    .contact-socials {
+      display: flex;
+      gap: 16px;
+      margin-top: 48px;
+    }
+    
+    .contact-social {
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white-50);
+      transition: all 0.3s;
+    }
+    
+    .contact-social:hover {
+      border-color: var(--blue-bright);
+      color: var(--blue-bright);
+      background: var(--blue-subtle);
+    }
+    
+    /* Contact Form */
+    .contact-form {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+    }
+    
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 48px;
+      letter-spacing: 2px;
+      margin-bottom: 48px;
+    }
+    
+    .form-group {
+      margin-bottom: 32px;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white-50);
+      margin-bottom: 12px;
+    }
+    
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      padding: 16px 0;
+      outline: none;
+      transition: border-color 0.3s;
+      appearance: none;
+    }
+    
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--white-30);
+    }
+    
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: var(--blue-bright);
+    }
+    
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .form-select {
+      background: transparent;
+      cursor: none;
+    }
+    
+    .form-select option {
+      background: var(--black-card);
+      color: var(--white);
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 48px;
+      background: var(--blue-bright);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: none;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out);
+      margin-top: 16px;
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .form-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      transform: translateX(-100%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    
+    .form-submit:hover::before { transform: translateX(0); }
+    .form-submit span { position: relative; z-index: 1; }
+    
+    .form-success {
+      display: none;
+      padding: 24px;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid var(--border-blue);
+      border-radius: 4px;
+      color: var(--blue-neon);
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-top: 16px;
+    }
+    
+    @media (max-width: 900px) {
+      .contact-body-inner { grid-template-columns: 1fr; gap: 60px; }
+      .contact-form { padding: 40px 32px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+    }
+    
+    @media (max-width: 600px) {
+      .contact-title { font-size: clamp(56px, 15vw, 120px); }
+      .contact-form { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" id="navLogo">
+        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+          <path d="M40 3 A30 30 0 0 1 70 33" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M40 3 A30 30 0 0 0 10 33" stroke="white" stroke-width="0.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <text x="7" y="38" font-family="Bebas Neue" font-size="18" fill="white" letter-spacing="5">ARC</text>
+        </svg>
+        <span class="nav-logo-sub">FILMS</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="work.html" class="nav-link">Work</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a href="contact.html" class="btn-contact">Let's Talk</a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <div class="nav-mobile-inner">
+        <a href="index.html" class="nav-mobile-link">Home</a>
+        <a href="work.html" class="nav-mobile-link">Work</a>
+        <a href="services.html" class="nav-mobile-link">Services</a>
+        <a href="about.html" class="nav-mobile-link">About</a>
+        <a href="contact.html" class="nav-mobile-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="contact-page">
+    <section class="contact-hero">
+      <div class="contact-hero-bg"></div>
+      <div class="contact-hero-content">
+        <div class="section-label">
+          <span>Contact</span>
+          <span>Start a Conversation</span>
+        </div>
+        <h1 class="contact-title">
+          <span class="line1">Let's</span><br>
+          <span class="line2">Create Together</span>
+        </h1>
+        <p class="contact-sub">
+          Whether you have a fully formed idea or just a feeling — we want to hear it. 
+          Every great film starts with a conversation.
+        </p>
+      </div>
+    </section>
+    
+    <div class="contact-body">
+      <div class="contact-body-inner">
+        <!-- Info -->
+        <div class="contact-info">
+          <h3>Get In Touch</h3>
+          
+          <div class="contact-detail">
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-val">
+              <a href="mailto:yashpancholi0602@gmail.com">yashpancholi0602@gmail.com</a>
+            </div>
+          </div>
+          
+          <div class="contact-detail">
+            <div class="contact-detail-label">Instagram</div>
+            <div class="contact-detail-val">
+              <a href="https://www.instagram.com/yash_pancholi_37?igsh=MWp4MHExZHB3amJx" target="_blank">@yash_pancholi_37</a>
+            </div>
+          </div>
+          
+          <div class="contact-detail">
+            <div class="contact-detail-label">LinkedIn</div>
+            <div class="contact-detail-val">
+              <a href="https://www.linkedin.com/in/pancholi-yash-b161792b5/" target="_blank">Yash Pancholi</a>
+            </div>
+          </div>
+          
+          <div class="contact-detail">
+            <div class="contact-detail-label">Based In</div>
+            <div class="contact-detail-val">India — Working Worldwide</div>
+          </div>
+          
+          <div class="contact-socials">
+            <a href="https://www.instagram.com/yash_pancholi_37?igsh=MWp4MHExZHB3amJx" target="_blank" class="contact-social" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/pancholi-yash-b161792b5/" target="_blank" class="contact-social" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="mailto:yashpancholi0602@gmail.com" class="contact-social" aria-label="Email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Form -->
+        <div class="contact-form">
+          <h2 class="form-title">Start A Project</h2>
+          
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name</label>
+                <input class="form-input" type="text" id="firstName" name="firstName" placeholder="Your first name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Your last name">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="service">Service Interested In</label>
+              <select class="form-select" id="service" name="service">
+                <option value="">Select a service...</option>
+                <option value="video">Video Production / Film</option>
+                <option value="motion">Motion Graphics</option>
+                <option value="logo">Logo Design</option>
+                <option value="branding">Brand Identity</option>
+                <option value="3d">3D Animation</option>
+                <option value="thumbnail">Thumbnail Design</option>
+                <option value="multiple">Multiple Services</option>
+                <option value="other">Something Else</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="budget">Approximate Budget</label>
+              <select class="form-select" id="budget" name="budget">
+                <option value="">Select budget range...</option>
+                <option value="under-500">Under $500</option>
+                <option value="500-2k">$500 – $2,000</option>
+                <option value="2k-5k">$2,000 – $5,000</option>
+                <option value="5k-15k">$5,000 – $15,000</option>
+                <option value="15k+">$15,000+</option>
+                <option value="discuss">Let's discuss</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="message">Tell Us Your Vision</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Describe your project, goals, timeline, and any other details..." required></textarea>
+            </div>
+            
+            <button type="submit" class="form-submit" id="formSubmit">
+              <span>Send Message</span>
+              <span>→</span>
+            </button>
+            
+            <div class="form-success" id="formSuccess">
+              ✓ Message sent! We'll be in touch within 24 hours.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          <span>© 2025 ARC Films. All rights reserved.</span>
+        </div>
+        <div class="footer-back-top">
+          <button onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to Top ↑</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Contact form handler
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+    
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('formSubmit');
+        btn.innerHTML = '<span>Sending...</span>';
+        btn.style.opacity = '0.7';
+        
+        setTimeout(() => {
+          btn.style.display = 'none';
+          success.style.display = 'block';
+          form.reset();
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>

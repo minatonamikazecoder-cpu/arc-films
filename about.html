@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — ARC Films</title>
+  <meta name="description" content="ARC Films is a visual storytelling studio founded by Yash Pancholi. Learn about our story, philosophy, and approach to cinematic work.">
+  <link rel="icon" href="https://res.cloudinary.com/dkodvlw5s/image/upload/v1737427727/favicon_rhu5o4.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .about-page { padding-top: var(--nav-h); }
+    
+    .about-page-hero {
+      padding: 100px 5% 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      min-height: 85vh;
+    }
+    
+    .about-hero-left { }
+    
+    .about-page-title {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 10vw, 160px);
+      line-height: 0.85;
+      margin-bottom: 32px;
+    }
+    
+    .about-page-title .line2 {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--white-50);
+      font-size: clamp(56px, 8vw, 130px);
+    }
+    
+    .about-hero-text {
+      font-size: 18px;
+      line-height: 1.9;
+      color: var(--white-70);
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+    
+    .about-hero-right {
+      position: relative;
+      height: 600px;
+    }
+    
+    .about-hero-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+    }
+    
+    .about-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .about-hero-badge {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      background: var(--blue-bright);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 60px rgba(59,130,246,0.5);
+      z-index: 1;
+    }
+    
+    .about-hero-badge .badge-year { font-size: 11px; letter-spacing: 2px; color: var(--white-70); }
+    .about-hero-badge .badge-num { font-family: var(--font-display); font-size: 36px; color: var(--white); }
+    
+    /* Values */
+    .values-section {
+      padding: 120px 5%;
+      background: var(--black-deep);
+    }
+    
+    .values-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .values-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 100px);
+      line-height: 0.9;
+      margin-bottom: 80px;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    
+    .value-item {
+      padding: 56px 40px;
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      transition: all 0.4s var(--ease-out);
+    }
+    
+    .value-item:hover {
+      border-color: var(--border-blue);
+      background: var(--black-hover);
+    }
+    
+    .value-num {
+      font-family: var(--font-display);
+      font-size: 80px;
+      color: var(--blue-bright);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    
+    .value-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    
+    .value-desc {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--white-50);
+    }
+    
+    /* Process */
+    .process-section {
+      padding: 120px 5%;
+      background: var(--black-rich);
+    }
+    
+    .process-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .process-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 100px);
+      line-height: 0.9;
+      margin-bottom: 80px;
+    }
+    
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .process-step {
+      padding: 48px 40px;
+      border-right: 1px solid var(--border);
+      transition: all 0.4s var(--ease-out);
+      position: relative;
+    }
+    
+    .process-step:last-child { border-right: none; }
+    
+    .process-step:hover {
+      background: var(--black-card);
+    }
+    
+    .process-step::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -1px;
+      width: 1px;
+      background: var(--blue-bright);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .process-step:hover::after { opacity: 1; }
+    
+    .process-step-num {
+      font-family: var(--font-display);
+      font-size: 64px;
+      color: var(--white-05);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    
+    .process-step-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      color: var(--blue-bright);
+    }
+    
+    .process-step-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--white-50);
+    }
+    
+    /* Stats Band */
+    .stats-band {
+      padding: 80px 5%;
+      background: var(--blue-bright);
+    }
+    
+    .stats-band-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    
+    .stats-band-item {
+      text-align: center;
+    }
+    
+    .stats-band-num {
+      font-family: var(--font-display);
+      font-size: 80px;
+      color: var(--white);
+      line-height: 1;
+    }
+    
+    .stats-band-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-top: 8px;
+    }
+    
+    /* Tools */
+    .tools-section {
+      padding: 120px 5%;
+      background: var(--black-deep);
+    }
+    
+    .tools-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .tools-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 100px);
+      line-height: 0.9;
+      margin-bottom: 64px;
+    }
+    
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+    
+    .tool-item {
+      padding: 32px 24px;
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      text-align: center;
+      transition: all 0.4s var(--ease-out);
+    }
+    
+    .tool-item:hover {
+      border-color: var(--border-blue);
+      transform: translateY(-4px);
+    }
+    
+    .tool-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    
+    .tool-cat {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+    }
+    
+    @media (max-width: 1200px) {
+      .tools-grid { grid-template-columns: repeat(4, 1fr); }
+      .stats-band-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    @media (max-width: 900px) {
+      .about-page-hero { grid-template-columns: 1fr; min-height: auto; }
+      .about-hero-right { height: 350px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .tools-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    
+    @media (max-width: 600px) {
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-band-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+          <path d="M40 3 A30 30 0 0 1 70 33" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M40 3 A30 30 0 0 0 10 33" stroke="white" stroke-width="0.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <text x="7" y="38" font-family="Bebas Neue" font-size="18" fill="white" letter-spacing="5">ARC</text>
+        </svg>
+        <span class="nav-logo-sub">FILMS</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="work.html" class="nav-link">Work</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a href="contact.html" class="btn-contact">Let's Talk</a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <div class="nav-mobile-inner">
+        <a href="index.html" class="nav-mobile-link">Home</a>
+        <a href="work.html" class="nav-mobile-link">Work</a>
+        <a href="services.html" class="nav-mobile-link">Services</a>
+        <a href="about.html" class="nav-mobile-link">About</a>
+        <a href="contact.html" class="nav-mobile-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="about-page">
+    
+    <!-- Hero -->
+    <div class="about-page-hero">
+      <div class="about-hero-left">
+        <div class="section-label">
+          <span>About</span>
+          <span>Our Story</span>
+        </div>
+        <h1 class="about-page-title">
+          <span>Born From</span><br>
+          <span class="line2">Obsession</span>
+        </h1>
+        <p class="about-hero-text">
+          ARC Films was founded on one belief: that storytelling is the most powerful force in the universe. We are a visual storytelling studio that exists to help brands, creators, and visionaries tell their story in the most compelling way possible.
+        </p>
+        <p class="about-hero-text" style="margin-top:-16px; font-size:15px; color:var(--white-50)">
+          Led by Yash Pancholi — filmmaker, designer, and creative director — we combine technical mastery with artistic vision to create work that transcends the ordinary.
+        </p>
+        <a href="contact.html" class="btn-primary" style="margin-top:16px">
+          <span>Work With Us</span><span class="btn-arrow">→</span>
+        </a>
+      </div>
+      
+      <div class="about-hero-right">
+        <div class="about-hero-img">
+          <img src="assets/images/about.png" alt="Yash Pancholi - Founder & Creative Director of ARC Films" loading="lazy">
+        </div>
+        <div class="about-hero-badge">
+          <span class="badge-year">Est.</span>
+          <span class="badge-num">2019</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Values -->
+    <section class="values-section">
+      <div class="values-inner">
+        <div class="section-label">
+          <span>Philosophy</span>
+          <span>What We Stand For</span>
+        </div>
+        <h2 class="values-title">
+          <span>Our Core</span><br>
+          <span class="italic">Beliefs</span>
+        </h2>
+        
+        <div class="values-grid">
+          <div class="value-item">
+            <div class="value-num">01</div>
+            <h3 class="value-title">Story First</h3>
+            <p class="value-desc">Every technical decision serves the narrative. We never let craft outshine the human truth at the heart of every project.</p>
+          </div>
+          <div class="value-item">
+            <div class="value-num">02</div>
+            <h3 class="value-title">No Compromise</h3>
+            <p class="value-desc">We don't settle. Every frame, every cut, every pixel is a conscious decision made in service of the highest possible standard.</p>
+          </div>
+          <div class="value-item">
+            <div class="value-num">03</div>
+            <h3 class="value-title">Collaboration</h3>
+            <p class="value-desc">Your vision is sacred. We don't impose — we listen, interpret, and amplify what you're trying to say to the world.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Stats Band -->
+    <div class="stats-band">
+      <div class="stats-band-inner">
+        <div class="stats-band-item">
+          <div class="stats-band-num">200+</div>
+          <div class="stats-band-label">Projects Completed</div>
+        </div>
+        <div class="stats-band-item">
+          <div class="stats-band-num">50+</div>
+          <div class="stats-band-label">Happy Clients</div>
+        </div>
+        <div class="stats-band-item">
+          <div class="stats-band-num">6+</div>
+          <div class="stats-band-label">Disciplines</div>
+        </div>
+        <div class="stats-band-item">
+          <div class="stats-band-num">5+</div>
+          <div class="stats-band-label">Years of Experience</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Process -->
+    <section class="process-section">
+      <div class="process-inner">
+        <div class="section-label">
+          <span>Process</span>
+          <span>How We Work</span>
+        </div>
+        <h2 class="process-title">
+          <span>From Brief</span><br>
+          <span class="italic">To Screen</span>
+        </h2>
+        
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-step-num">01</div>
+            <div class="process-step-title">Discovery</div>
+            <p class="process-step-desc">We start with a deep dive into your brand, goals, audience, and vision. This foundation shapes everything that follows.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">02</div>
+            <div class="process-step-title">Strategy</div>
+            <p class="process-step-desc">We define the creative direction, messaging, and approach. Every decision is intentional and aligned to your objectives.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">03</div>
+            <div class="process-step-title">Creation</div>
+            <p class="process-step-desc">The making. Whether on set, in the edit suite, or in the design tool — this is where obsession becomes reality.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">04</div>
+            <div class="process-step-title">Delivery</div>
+            <p class="process-step-desc">Files, assets, and guidance tailored for every platform. We don't deliver and disappear — we see it through.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Tools -->
+    <section class="tools-section">
+      <div class="tools-inner">
+        <div class="section-label">
+          <span>Tools</span>
+          <span>Our Creative Stack</span>
+        </div>
+        <h2 class="tools-title">
+          <span>The Arsenal</span>
+        </h2>
+        
+        <div class="tools-grid">
+          <div class="tool-item"><div class="tool-name">Premiere Pro</div><div class="tool-cat">Video Edit</div></div>
+          <div class="tool-item"><div class="tool-name">After Effects</div><div class="tool-cat">Motion</div></div>
+          <div class="tool-item"><div class="tool-name">Cinema 4D</div><div class="tool-cat">3D</div></div>
+          <div class="tool-item"><div class="tool-name">Blender</div><div class="tool-cat">3D</div></div>
+          <div class="tool-item"><div class="tool-name">Photoshop</div><div class="tool-cat">Design</div></div>
+          <div class="tool-item"><div class="tool-name">Illustrator</div><div class="tool-cat">Design</div></div>
+          <div class="tool-item"><div class="tool-name">DaVinci Resolve</div><div class="tool-cat">Color Grade</div></div>
+          <div class="tool-item"><div class="tool-name">Figma</div><div class="tool-cat">UI / Brand</div></div>
+          <div class="tool-item"><div class="tool-name">ARRI ALEXA</div><div class="tool-cat">Camera</div></div>
+          <div class="tool-item"><div class="tool-name">Sony FX6</div><div class="tool-cat">Camera</div></div>
+          <div class="tool-item"><div class="tool-name">DJI Ronin</div><div class="tool-cat">Stabilizer</div></div>
+          <div class="tool-item"><div class="tool-name">RED Camera</div><div class="tool-cat">Cinema</div></div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="cta-section">
+      <div class="cta-bg"><div class="cta-noise"></div><div class="cta-grid-lines"></div></div>
+      <div class="cta-content">
+        <div class="cta-label">Ready to Start?</div>
+        <h2 class="cta-title"><span>Let's Build</span><br><span class="italic">Something Together</span></h2>
+        <div class="cta-actions" style="margin-top:48px">
+          <a href="contact.html" class="btn-primary large"><span>Start a Conversation</span><span class="btn-arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <div class="footer-copy"><span>© 2025 ARC Films. All rights reserved.</span></div>
+        <div class="footer-back-top"><button onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to Top ↑</button></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
