@@ -57,6 +57,31 @@ function initCursor() {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
   });
+
+  document.addEventListener('mouseleave', () => {
+    cursorEl.style.opacity = '0';
+    followerEl.style.opacity = '0';
+  });
+
+  document.addEventListener('mouseenter', () => {
+    cursorEl.style.opacity = '1';
+    followerEl.style.opacity = '1';
+  });
+
+  // Hide custom cursor when hovering over iframes
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.tagName === 'IFRAME') {
+      cursorEl.style.opacity = '0';
+      followerEl.style.opacity = '0';
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.tagName === 'IFRAME') {
+      cursorEl.style.opacity = '1';
+      followerEl.style.opacity = '1';
+    }
+  });
   
   // Hover detection
   const hoverEls = qsa('a, button, .service-card, .work-item, .logo-item, .thumb-item, .tilt-card, .anim3d-item');
@@ -681,9 +706,49 @@ function initVideoHoverPlay() {
   });
 }
 
+// ===== LAZY YOUTUBE EMBEDS =====
+function initLazyYouTube() {
+  const iframes = qsa('iframe[src*="youtube.com/embed/"]');
+  iframes.forEach(iframe => {
+    const src = iframe.src;
+    const match = src.match(/\/embed\/([^/?]+)/);
+    if (!match) return;
+    const videoId = match[1];
+    
+    const container = document.createElement('div');
+    container.className = 'youtube-lazy-container';
+    
+    const title = iframe.getAttribute('title') || 'YouTube Video';
+    
+    container.innerHTML = `
+      <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'" alt="${title}" class="youtube-lazy-thumb">
+      <div class="youtube-lazy-play">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
+    `;
+    
+    iframe.parentNode.replaceChild(container, iframe);
+    
+    container.addEventListener('click', () => {
+      const newIframe = document.createElement('iframe');
+      newIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      newIframe.title = title;
+      newIframe.frameBorder = '0';
+      newIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      newIframe.allowFullscreen = true;
+      
+      container.innerHTML = '';
+      container.appendChild(newIframe);
+    });
+  });
+}
+
 // ===== INIT ALL =====
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
+  initLazyYouTube();
   initCursor();
   initNav();
   initHeroCanvas();

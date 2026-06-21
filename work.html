@@ -408,6 +408,7 @@
         <button class="filter-tab" data-filter="branding">Brand Identity</button>
         <button class="filter-tab" data-filter="3d">3D Animation</button>
         <button class="filter-tab" data-filter="thumbnails">Thumbnails</button>
+        <button class="filter-tab" data-filter="bts">Behind the Scenes</button>
       </div>
     </div>
     
@@ -424,47 +425,23 @@
         <div class="video-work-grid">
           <div class="video-work-item">
             <iframe src="https://www.youtube.com/embed/YKV7ap2W-ss?si=nHkSFcd2FUjP6PYu" title="Film 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            <div class="video-work-info">
-              <span class="video-work-cat">Cinematic Film</span>
-              <div class="video-work-title">Featured Production</div>
-            </div>
           </div>
           <div class="video-work-item">
             <iframe src="https://www.youtube.com/embed/1QC9X_QW52k?si=Lmx7A3AwMjMkB_Rm" title="Film 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            <div class="video-work-info">
-              <span class="video-work-cat">Documentary</span>
-              <div class="video-work-title">Cinematic Story</div>
-            </div>
           </div>
           <div class="video-work-item">
             <iframe src="https://www.youtube.com/embed/XbIqAguXTS4?si=jwGa3GzdbYv6IM_p" title="Film 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            <div class="video-work-info">
-              <span class="video-work-cat">Emotional Film</span>
-              <div class="video-work-title">Emotional Journey</div>
-            </div>
           </div>
           <div class="video-work-item">
             <iframe src="https://www.youtube.com/embed/2TZszpoCUrI?si=KqrRBKNYZVHWLXhB" title="Film 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            <div class="video-work-info">
-              <span class="video-work-cat">Visual Poetry</span>
-              <div class="video-work-title">Visual Poetry</div>
-            </div>
           </div>
           <div class="video-work-item">
             <iframe src="https://www.youtube.com/embed/M__w4K27iO8?si=wNbrluriGiTCYG_U" title="Film 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            <div class="video-work-info">
-              <span class="video-work-cat">Documentary Reel</span>
-              <div class="video-work-title">Documentary Reel</div>
-            </div>
           </div>
           <div class="video-work-item">
             <video autoplay muted loop playsinline>
               <source src="https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427524/video_pwazu4.mp4" type="video/mp4">
             </video>
-            <div class="video-work-info">
-              <span class="video-work-cat">Editing Reel</span>
-              <div class="video-work-title">Video Edit Showcase</div>
-            </div>
           </div>
         </div>
         
@@ -474,19 +451,11 @@
             <video autoplay muted loop playsinline>
               <source src="https://res.cloudinary.com/dkodvlw5s/video/upload/v1736747558/videos/zvvubeepeu4l7ynoyni7.mp4" type="video/mp4">
             </video>
-            <div class="video-work-info">
-              <span class="video-work-cat">Cinematic</span>
-              <div class="video-work-title">Scene Study</div>
-            </div>
           </div>
           <div class="video-work-item">
             <video autoplay muted loop playsinline>
               <source src="https://res.cloudinary.com/dkodvlw5s/video/upload/v1736747559/videos/o966osbnugxfjbkgjo9v.mp4" type="video/mp4">
             </video>
-            <div class="video-work-info">
-              <span class="video-work-cat">Film</span>
-              <div class="video-work-title">Narrative Film</div>
-            </div>
           </div>
         </div>
         
@@ -637,6 +606,21 @@
           <div class="thumb-full-item"><img src="https://res.cloudinary.com/dkodvlw5s/image/upload/v1737427703/1_ts6nza.jpg" alt="Thumbnail" loading="lazy"></div>
         </div>
         
+        <!-- BEHIND THE SCENES -->
+        <div id="bts" class="section-divider">
+          <h2>Behind the Scenes</h2>
+          <div class="divider-line"></div>
+          <span class="section-label" style="margin:0"><span style="color:var(--blue-bright)">01</span></span>
+        </div>
+        
+        <div class="video-work-grid">
+          <div class="video-work-item">
+            <video autoplay muted loop playsinline>
+              <source src="https://res.cloudinary.com/dnrbe1dpn/video/upload/v1782049113/arc-films/ciuhjnrj3lzb2toatttn.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        
       </div>
     </div>
     
@@ -683,6 +667,39 @@
         }
       });
     });
+
+    // Handle hash-based navigation from other pages (e.g. index.html links like work.html#video)
+    function handleHashNavigation() {
+      const hash = window.location.hash.replace('#', '');
+      if (!hash) return;
+
+      const target = document.getElementById(hash);
+      if (!target) return;
+
+      // Activate the matching filter tab
+      filterTabs.forEach(t => t.classList.remove('active'));
+      const matchingTab = document.querySelector(`.filter-tab[data-filter="${hash}"]`);
+      if (matchingTab) {
+        matchingTab.classList.add('active');
+      }
+
+      // Make sure the target section and its parent elements are visible
+      // (override reveal animation opacity so browser can scroll to them)
+      target.style.opacity = '1';
+      target.style.transform = 'none';
+
+      // Scroll to the section after the page has rendered
+      // Use a timeout to wait for reveal animations and layout to settle
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+
+    // Run on page load
+    handleHashNavigation();
+
+    // Also handle hash changes while on the page
+    window.addEventListener('hashchange', handleHashNavigation);
   </script>
 </body>
 </html>

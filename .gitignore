@@ -49,3 +49,8 @@ next-env.d.ts
 *.sln
 *.swp
 *~
+
+# custom scripts & uploads
+next-app/upload-today-downloads.js
+next-app/uploaded-links.txt
+
