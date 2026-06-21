@@ -73,14 +73,16 @@ export default function VideoGallery({ items }: VideoGalleryProps) {
               delay={idx * 100}
               className={`video-cell ${video.isFeatured ? "featured" : ""}`}
             >
-              <div className="video-cell-inner" style={{ position: "relative" }}>
-                <SkeletonMedia
-                  src={video.embedUrl}
-                  alt={`ARC Films - ${video.title}`}
-                  type="iframe"
-                  fill
-                />
-                <div className="video-cell-label" style={{ zIndex: 10 }}>
+              <div className="video-cell-inner">
+                <div style={{ position: "relative", width: "100%", aspectRatio: "16/9" }}>
+                  <SkeletonMedia
+                    src={video.embedUrl}
+                    alt={`ARC Films - ${video.title}`}
+                    type="iframe"
+                    fill
+                  />
+                </div>
+                <div className="video-cell-label">
                   <span className="video-cell-num">{video.num}</span>
                   <span className="video-cell-title">{video.title}</span>
                 </div>
