@@ -90,7 +90,7 @@ export default function WorkPageClient({ categories, workItems }: WorkPageClient
       <div className="work-page-hero">
         <AnimateOnScroll className="section-label">
           <span>Portfolio</span>
-          <span>Selected Work 2019–2025</span>
+          <span>Selected Work 2019–2026</span>
         </AnimateOnScroll>
         <h1 className="work-page-title">
           <AnimateOnScroll variant="reveal" delay={0}>

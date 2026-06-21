@@ -18,7 +18,7 @@ export default function FeaturedReel({ reel }: FeaturedReelProps) {
   const { openVideoModal } = useVideoModal();
 
   const title = reel?.title || "ARC Films — Official Showreel";
-  const year = reel?.year || "2024";
+  const year = reel?.year || "2026";
   const videoUrl = reel?.video_url || "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427499/reel_qfz921.mp4";
   const thumbnailUrl = reel?.thumbnail_url || "/images/reel.png";
 
