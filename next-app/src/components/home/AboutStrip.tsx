@@ -109,9 +109,6 @@ export default function AboutStrip({ banners }: AboutStripProps) {
             <div className="about-img-main" style={{ position: "relative", overflow: "hidden" }}>
               <SkeletonMedia src={mainImgUrl} alt="ARC Films - Behind the Scenes" type="image" fill sizes="(max-width: 900px) 100vw, 50vw" />
             </div>
-            <div className="about-img-accent" style={{ position: "relative", width: "100%", height: "180px", overflow: "hidden" }}>
-              <SkeletonMedia src="/images/reel.png" alt="ARC Films - On Location" type="image" fill />
-            </div>
             <div className="about-badge">
               <span className="badge-year">Est.</span>
               <span className="badge-num">2019</span>
