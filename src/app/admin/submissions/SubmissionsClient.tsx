@@ -53,7 +53,7 @@ export default function SubmissionsPage() {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", padding: "64px", color: "#f8fafc" }}>
+      <div style={{ display: "flex", justifyContent: "center", padding: "64px", color: "#475569" }}>
         <span>Loading submissions...</span>
       </div>
     );
@@ -76,15 +76,15 @@ export default function SubmissionsPage() {
               key={sub.id}
               style={{
                 ...dashboardStyles.card,
-                borderLeft: sub.is_read ? "1px solid rgba(255,255,255,0.05)" : "3px solid #3b82f6",
+                borderLeft: sub.is_read ? "1px solid #e2e8f0" : "3px solid #2563eb",
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "20px" }}>
                 <div>
-                  <h4 style={{ fontSize: "20px", fontWeight: "600", margin: "0 0 6px 0", color: "#ffffff" }}>
+                  <h4 style={{ fontSize: "20px", fontWeight: "600", margin: "0 0 6px 0", color: "#0f172a" }}>
                     {sub.first_name} {sub.last_name || ""}
                   </h4>
-                  <a href={`mailto:${sub.email}`} style={{ fontSize: "14px", color: "#60a5fa", transition: "color 0.2s" }}>
+                  <a href={`mailto:${sub.email}`} style={{ fontSize: "14px", color: "#2563eb", transition: "color 0.2s" }}>
                     {sub.email}
                   </a>
                 </div>
@@ -93,9 +93,9 @@ export default function SubmissionsPage() {
                     onClick={() => toggleSubmissionRead(sub.id, sub.is_read)}
                     style={{
                       padding: "8px 16px",
-                      background: sub.is_read ? "transparent" : "#3b82f6",
-                      border: "1px solid #3b82f6",
-                      color: sub.is_read ? "#60a5fa" : "#ffffff",
+                      background: sub.is_read ? "transparent" : "#2563eb",
+                      border: "1px solid #2563eb",
+                      color: sub.is_read ? "#2563eb" : "#ffffff",
                       borderRadius: "6px",
                       fontSize: "12px",
                       fontWeight: "600",
@@ -111,20 +111,20 @@ export default function SubmissionsPage() {
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", marginBottom: "20px", paddingBottom: "20px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", marginBottom: "20px", paddingBottom: "20px", borderBottom: "1px solid #e2e8f0" }}>
                 <div>
                   <span style={dashboardStyles.formLabel}>Interested In</span>
-                  <div style={{ fontSize: "15px", marginTop: "6px", color: "#e2e8f0" }}>{sub.service || "N/A"}</div>
+                  <div style={{ fontSize: "15px", marginTop: "6px", color: "#334155" }}>{sub.service || "N/A"}</div>
                 </div>
                 <div>
                   <span style={dashboardStyles.formLabel}>Approximate Budget</span>
-                  <div style={{ fontSize: "15px", marginTop: "6px", color: "#e2e8f0" }}>{sub.budget || "N/A"}</div>
+                  <div style={{ fontSize: "15px", marginTop: "6px", color: "#334155" }}>{sub.budget || "N/A"}</div>
                 </div>
               </div>
 
               <div>
                 <span style={dashboardStyles.formLabel}>Message / Vision</span>
-                <p style={{ fontSize: "15px", lineHeight: "1.7", color: "#cbd5e1", margin: "10px 0 0 0", whiteSpace: "pre-wrap", background: "rgba(0,0,0,0.2)", padding: "16px", borderRadius: "6px" }}>
+                <p style={{ fontSize: "15px", lineHeight: "1.7", color: "#334155", margin: "10px 0 0 0", whiteSpace: "pre-wrap", background: "#f8fafc", border: "1px solid #e2e8f0", padding: "16px", borderRadius: "6px" }}>
                   {sub.message}
                 </p>
               </div>

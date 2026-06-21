@@ -143,7 +143,7 @@ export default function BannersPage() {
 
   if (loading && banners.length === 0) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", padding: "64px", color: "#f8fafc" }}>
+      <div style={{ display: "flex", justifyContent: "center", padding: "64px", color: "#475569" }}>
         <span>Loading banners...</span>
       </div>
     );
@@ -214,10 +214,10 @@ export default function BannersPage() {
                   htmlFor="banner-media-file"
                   style={{
                     padding: "14px 18px",
-                    background: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid rgba(255, 255, 255, 0.08)",
+                    background: "#f1f5f9",
+                    border: "1px solid #cbd5e1",
                     borderRadius: "6px",
-                    color: "#cbd5e1",
+                    color: "#475569",
                     cursor: uploadingField === "media_url" ? "not-allowed" : "pointer",
                     fontSize: "14px",
                     display: "inline-block",
@@ -313,7 +313,7 @@ export default function BannersPage() {
                       {ban.section}
                     </td>
                     <td style={dashboardStyles.td}>
-                      <span style={{ fontSize: "12px", background: "rgba(255,255,255,0.05)", padding: "2px 6px", borderRadius: "4px" }}>
+                      <span style={{ fontSize: "12px", background: "#f1f5f9", padding: "2px 6px", borderRadius: "4px", color: "#475569", border: "1px solid #cbd5e1" }}>
                         {ban.media_type}
                       </span>
                     </td>
@@ -322,7 +322,7 @@ export default function BannersPage() {
                         href={ban.media_url}
                         target="_blank"
                         rel="noreferrer"
-                        style={{ fontSize: "13px", color: "#60a5fa", maxWidth: "250px", overflow: "hidden", textOverflow: "ellipsis", display: "inline-block", whiteSpace: "nowrap" }}
+                        style={{ fontSize: "13px", color: "#2563eb", maxWidth: "250px", overflow: "hidden", textOverflow: "ellipsis", display: "inline-block", whiteSpace: "nowrap" }}
                       >
                         {ban.media_url}
                       </a>
@@ -331,7 +331,7 @@ export default function BannersPage() {
                     <td style={dashboardStyles.td}>
                       <span
                         style={{
-                          color: ban.is_active ? "#34d399" : "#f87171",
+                          color: ban.is_active ? "#059669" : "#dc2626",
                           fontSize: "13px",
                           fontWeight: "500",
                         }}

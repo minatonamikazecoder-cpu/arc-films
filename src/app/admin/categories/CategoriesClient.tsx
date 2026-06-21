@@ -112,7 +112,7 @@ export default function CategoriesPage() {
 
   if (loading && categories.length === 0) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", padding: "64px", color: "#f8fafc" }}>
+      <div style={{ display: "flex", justifyContent: "center", padding: "64px", color: "#475569" }}>
         <span>Loading categories...</span>
       </div>
     );
@@ -255,7 +255,7 @@ export default function CategoriesPage() {
                     <td style={dashboardStyles.td}>
                       <span
                         style={{
-                          color: cat.is_active ? "#34d399" : "#f87171",
+                          color: cat.is_active ? "#059669" : "#dc2626",
                           fontSize: "13px",
                           fontWeight: "500",
                         }}

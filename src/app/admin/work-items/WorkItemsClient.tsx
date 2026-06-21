@@ -204,7 +204,7 @@ export default function WorkItemsPage() {
 
   if (loading && categories.length === 0) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", padding: "64px", color: "#f8fafc" }}>
+      <div style={{ display: "flex", justifyContent: "center", padding: "64px", color: "#475569" }}>
         <span>Loading...</span>
       </div>
     );
@@ -317,10 +317,10 @@ export default function WorkItemsPage() {
                       htmlFor="work-item-media-file"
                       style={{
                         padding: "14px 18px",
-                        background: "rgba(255, 255, 255, 0.05)",
-                        border: "1px solid rgba(255, 255, 255, 0.08)",
+                        background: "#f1f5f9",
+                        border: "1px solid #cbd5e1",
                         borderRadius: "6px",
-                        color: "#cbd5e1",
+                        color: "#475569",
                         cursor: uploadingField === "media_url" ? "not-allowed" : "pointer",
                         fontSize: "14px",
                         display: "inline-block",
@@ -359,10 +359,10 @@ export default function WorkItemsPage() {
                     htmlFor="work-item-thumbnail-file"
                     style={{
                       padding: "14px 18px",
-                      background: "rgba(255, 255, 255, 0.05)",
-                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      background: "#f1f5f9",
+                      border: "1px solid #cbd5e1",
                       borderRadius: "6px",
-                      color: "#cbd5e1",
+                      color: "#475569",
                       cursor: uploadingField === "thumbnail_url" ? "not-allowed" : "pointer",
                       fontSize: "14px",
                       display: "inline-block",
@@ -481,7 +481,7 @@ export default function WorkItemsPage() {
                     </td>
                     <td style={dashboardStyles.td}>{item.work_categories?.name || "N/A"}</td>
                     <td style={dashboardStyles.td}>
-                      <span style={{ fontSize: "12px", background: "rgba(255,255,255,0.05)", padding: "2px 6px", borderRadius: "4px" }}>
+                      <span style={{ fontSize: "12px", background: "#f1f5f9", padding: "2px 6px", borderRadius: "4px", color: "#475569", border: "1px solid #cbd5e1" }}>
                         {item.media_type}
                       </span>
                     </td>
@@ -493,7 +493,7 @@ export default function WorkItemsPage() {
                     <td style={dashboardStyles.td}>
                       <span
                         style={{
-                          color: item.is_active ? "#34d399" : "#f87171",
+                          color: item.is_active ? "#059669" : "#dc2626",
                           fontSize: "13px",
                           fontWeight: "500",
                         }}

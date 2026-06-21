@@ -57,6 +57,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { id: "banners", label: "Banner Settings", path: "/admin/banners" },
   ];
 
+  if (pathname === "/admin/login") {
+    return <>{children}</>;
+  }
+
   return (
     <div style={dashboardStyles.container}>
       {/* Sidebar */}

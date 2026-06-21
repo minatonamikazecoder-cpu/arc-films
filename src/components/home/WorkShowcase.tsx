@@ -25,70 +25,16 @@ interface WorkShowcaseProps {
 
 export default function WorkShowcase({ items }: WorkShowcaseProps) {
   const galleryRef = useRef<HTMLDivElement>(null);
-  
-  const staticItems = [
-    {
-      id: "1",
-      category: "Video Production",
-      title: "Cinematic Showreel",
-      mediaType: "video" as const,
-      mediaUrl: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427524/video_pwazu4.mp4",
-      href: "/work#video",
-    },
-    {
-      id: "2",
-      category: "Logo Animation",
-      title: "Dynamic Brand Reveal",
-      mediaType: "video" as const,
-      mediaUrl: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427486/logo_q70c1i.mp4",
-      href: "/work#logo-anim",
-    },
-    {
-      id: "3",
-      category: "3D Animation",
-      title: "Dimensional Worlds",
-      mediaType: "video" as const,
-      mediaUrl: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514508/3d_scene_1_2_zpi58f.mp4",
-      href: "/work#3d",
-    },
-    {
-      id: "4",
-      category: "Brand Identity",
-      title: "Identity Systems",
-      mediaType: "image" as const,
-      mediaUrl: "https://res.cloudinary.com/dkodvlw5s/image/upload/v1737427466/brand-identity-preview_nkj7du.jpg",
-      href: "/work#branding",
-      isLarge: true,
-    },
-    {
-      id: "5",
-      category: "Motion",
-      title: "Logo in Motion",
-      mediaType: "video" as const,
-      mediaUrl: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427467/log_animation_anibuj.mp4",
-      href: "/work#logo-anim",
-    },
-    {
-      id: "6",
-      category: "Short Form Content",
-      title: "Viral Moments",
-      mediaType: "video" as const,
-      mediaUrl: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427499/reel_qfz921.mp4",
-      href: "/work#motion",
-    },
-  ];
 
-  const renderedItems = (items && items.length > 0)
-    ? items.map((item, idx) => ({
-        id: item.id,
-        category: item.work_categories?.name || item.subtitle || "Showcase",
-        title: item.title,
-        mediaType: (item.media_type === "video" || item.media_type === "youtube") ? ("video" as const) : ("image" as const),
-        mediaUrl: item.media_url,
-        href: `/work#${item.work_categories?.slug || "video"}`,
-        isLarge: idx === 3
-      }))
-    : staticItems;
+  const renderedItems = (items || []).map((item, idx) => ({
+    id: item.id,
+    category: item.work_categories?.name || item.subtitle || "Showcase",
+    title: item.title,
+    mediaType: (item.media_type === "video" || item.media_type === "youtube") ? ("video" as const) : ("image" as const),
+    mediaUrl: item.media_url,
+    href: `/work#${item.work_categories?.slug || "video"}`,
+    isLarge: idx === 3
+  }));
 
   useEffect(() => {
     const gallery = galleryRef.current;
