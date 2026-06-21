@@ -33,6 +33,9 @@ export async function createClient() {
             getUser: async () => ({ data: { user: null }, error: null }),
             getSession: async () => ({ data: { session: null }, error: null }),
             signOut: async () => ({ error: null }),
+            signInWithPassword: async () => ({ data: { user: null, session: null }, error: null }),
+            signUp: async () => ({ data: { user: null, session: null }, error: null }),
+            onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
           }
         }
         if (prop === 'from') {

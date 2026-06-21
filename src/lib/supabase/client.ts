@@ -5,6 +5,9 @@ export function createClient() {
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!url || !anonKey) {
+    if (typeof window !== 'undefined') {
+      console.warn("Supabase NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY are missing. Using mock proxy client.");
+    }
     // Return a dummy client during build time if environment variables are missing
     const createQueryPromise = (): any => {
       const promise = Promise.resolve({ data: [], error: null })
@@ -32,6 +35,9 @@ export function createClient() {
             getUser: async () => ({ data: { user: null }, error: null }),
             getSession: async () => ({ data: { session: null }, error: null }),
             signOut: async () => ({ error: null }),
+            signInWithPassword: async () => ({ data: { user: null, session: null }, error: null }),
+            signUp: async () => ({ data: { user: null, session: null }, error: null }),
+            onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
           }
         }
         if (prop === 'from') {
