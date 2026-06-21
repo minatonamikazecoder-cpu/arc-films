@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import SkeletonMedia from "@/components/SkeletonMedia";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { useVideoModal } from "@/components/layout/VideoModal";
 
@@ -33,7 +34,7 @@ export default function FeaturedReel() {
         <AnimateOnScroll variant="reveal" delay={300}>
           <div className="reel-player" id="reelPlayer">
             <div className="reel-thumb">
-              <Image src="/images/reel.png" alt="ARC Films Showreel" fill sizes="(max-width: 900px) 100vw, 80vw" style={{ objectFit: "cover" }} />
+              <SkeletonMedia src="/images/reel.png" alt="ARC Films Showreel" type="image" fill sizes="(max-width: 900px) 100vw, 80vw" />
               <div className="reel-overlay">
                 <button className="reel-play-btn" id="reelPlayBtn" onClick={handlePlayReel}>
                   <div className="reel-play-ring"></div>

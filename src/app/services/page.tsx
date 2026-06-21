@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import SkeletonMedia from "@/components/SkeletonMedia";
 import { createClient } from "@/lib/supabase/server";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import CTASection from "@/components/home/CTASection";
@@ -118,22 +119,29 @@ export default async function ServicesPage() {
                   )}
 
                   {service.preview_media_url && (
-                    <AnimateOnScroll variant="reveal" delay={300} className="service-full-preview" style={{ position: "relative" }}>
+                    <AnimateOnScroll variant="reveal" delay={300} className="service-full-preview" style={{ position: "relative", overflow: "hidden", minHeight: "300px" }}>
                       {service.preview_media_type === "youtube" ? (
-                        <iframe
+                        <SkeletonMedia
                           src={service.preview_media_url}
-                          title={service.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          style={{ width: "100%", aspectRatio: "16/9", borderRadius: "8px" }}
+                          alt={service.title}
+                          type="iframe"
+                          fill
                         />
                       ) : service.preview_media_type === "video" ? (
-                        <video autoPlay muted loop playsInline>
-                          <source src={service.preview_media_url} type="video/mp4" />
-                        </video>
+                        <SkeletonMedia
+                          src={service.preview_media_url}
+                          alt={service.title}
+                          type="video"
+                          fill
+                        />
                       ) : (
-                        <Image src={service.preview_media_url} alt={service.title} fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover" }} />
+                        <SkeletonMedia
+                          src={service.preview_media_url}
+                          alt={service.title}
+                          type="image"
+                          fill
+                          sizes="(max-width: 900px) 100vw, 50vw"
+                        />
                       )}
                     </AnimateOnScroll>
                   )}

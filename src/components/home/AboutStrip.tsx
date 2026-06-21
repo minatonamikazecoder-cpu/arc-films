@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import SkeletonMedia from "@/components/SkeletonMedia";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 interface BannerDbItem {
@@ -105,11 +106,11 @@ export default function AboutStrip({ banners }: AboutStripProps) {
 
         <div className="about-right">
           <div className="about-img-stack">
-            <div className="about-img-main" style={{ position: "relative" }}>
-              <Image src={mainImgUrl} alt="ARC Films - Behind the Scenes" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover" }} />
+            <div className="about-img-main" style={{ position: "relative", overflow: "hidden" }}>
+              <SkeletonMedia src={mainImgUrl} alt="ARC Films - Behind the Scenes" type="image" fill sizes="(max-width: 900px) 100vw, 50vw" />
             </div>
-            <div className="about-img-accent">
-              <Image src="/images/reel.png" alt="ARC Films - On Location" width={400} height={180} style={{ width: "100%", height: "180px", objectFit: "cover" }} />
+            <div className="about-img-accent" style={{ position: "relative", width: "100%", height: "180px", overflow: "hidden" }}>
+              <SkeletonMedia src="/images/reel.png" alt="ARC Films - On Location" type="image" fill />
             </div>
             <div className="about-badge">
               <span className="badge-year">Est.</span>

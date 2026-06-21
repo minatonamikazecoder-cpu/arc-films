@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
+import SkeletonMedia from "@/components/SkeletonMedia";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 interface LogoItemProps {
@@ -43,9 +44,9 @@ export default function LogoItem({ src, alt, index }: LogoItemProps) {
         className="logo-item tilt-card"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        style={{ position: "relative" }}
+        style={{ position: "relative", overflow: "hidden" }}
       >
-        <Image src={src} alt={alt} fill sizes="(max-width: 600px) 50vw, (max-width: 1200px) 25vw, 15vw" style={{ objectFit: "cover" }} />
+        <SkeletonMedia src={src} alt={alt} type="image" fill sizes="(max-width: 600px) 50vw, (max-width: 1200px) 25vw, 15vw" />
       </div>
     </AnimateOnScroll>
   );

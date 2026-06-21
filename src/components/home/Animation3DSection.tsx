@@ -1,4 +1,5 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import SkeletonMedia from "@/components/SkeletonMedia";
 
 export default function Animation3DSection() {
   const items = [
@@ -48,9 +49,7 @@ export default function Animation3DSection() {
               delay={index * 80}
               className={`anim3d-item ${item.isTall ? "tall" : ""}`}
             >
-              <video autoPlay muted loop playsInline>
-                <source src={item.src} type="video/mp4" />
-              </video>
+              <SkeletonMedia src={item.src} type="video" fill />
               <div className="anim3d-item-overlay">
                 <span>{item.label}</span>
               </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SkeletonMedia from "@/components/SkeletonMedia";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 export default function ThumbnailGrid() {
@@ -38,9 +39,9 @@ export default function ThumbnailGrid() {
               variant="card"
               delay={idx * 60}
               className="thumb-item"
-              style={{ position: "relative" }}
+              style={{ position: "relative", overflow: "hidden" }}
             >
-              <Image src={thumb.src} alt={thumb.alt} fill sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 25vw" style={{ objectFit: "cover" }} />
+              <SkeletonMedia src={thumb.src} alt={thumb.alt} type="image" fill sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 25vw" />
             </AnimateOnScroll>
           ))}
         </div>

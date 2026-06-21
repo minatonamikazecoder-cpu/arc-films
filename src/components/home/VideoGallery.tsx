@@ -1,4 +1,5 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import SkeletonMedia from "@/components/SkeletonMedia";
 
 export default function VideoGallery() {
   const videos = [
@@ -54,16 +55,14 @@ export default function VideoGallery() {
               delay={idx * 100}
               className={`video-cell ${video.isFeatured ? "featured" : ""}`}
             >
-              <div className="video-cell-inner">
-                <iframe
+              <div className="video-cell-inner" style={{ position: "relative" }}>
+                <SkeletonMedia
                   src={video.embedUrl}
-                  title={`ARC Films - ${video.title}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                ></iframe>
-                <div className="video-cell-label">
+                  alt={`ARC Films - ${video.title}`}
+                  type="iframe"
+                  fill
+                />
+                <div className="video-cell-label" style={{ zIndex: 10 }}>
                   <span className="video-cell-num">{video.num}</span>
                   <span className="video-cell-title">{video.title}</span>
                 </div>
