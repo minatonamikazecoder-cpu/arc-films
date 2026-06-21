@@ -1,29 +1,44 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import SkeletonMedia from "@/components/SkeletonMedia";
 
-export default function Animation3DSection() {
-  const items = [
-    {
-      label: "3D Scene",
-      src: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514693/3d_ih4mik.mp4",
-      isTall: false,
-    },
-    {
-      label: "Character Animation",
-      src: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514596/1_xytlei.mp4",
-      isTall: true,
-    },
-    {
-      label: "Stylized Portrait",
-      src: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514538/3d_sam_houser_kxfy3t.mp4",
-      isTall: false,
-    },
-    {
-      label: "Environment Scene",
-      src: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514508/3d_scene_1_2_zpi58f.mp4",
-      isTall: false,
-    },
-  ];
+interface Animation3DSectionProps {
+  items?: {
+    id: string;
+    title: string;
+    media_url: string;
+    aspect_ratio?: string | null;
+  }[] | null;
+}
+
+export default function Animation3DSection({ items }: Animation3DSectionProps) {
+  const finalItems = items && items.length > 0
+    ? items.map((item) => ({
+        label: item.title,
+        src: item.media_url,
+        isTall: item.aspect_ratio === "9/16",
+      }))
+    : [
+        {
+          label: "3D Scene",
+          src: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514693/3d_ih4mik.mp4",
+          isTall: false,
+        },
+        {
+          label: "Character Animation",
+          src: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514596/1_xytlei.mp4",
+          isTall: true,
+        },
+        {
+          label: "Stylized Portrait",
+          src: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514538/3d_sam_houser_kxfy3t.mp4",
+          isTall: false,
+        },
+        {
+          label: "Environment Scene",
+          src: "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737514508/3d_scene_1_2_zpi58f.mp4",
+          isTall: false,
+        },
+      ];
 
   return (
     <section className="anim3d-section" id="anim3dSection">
@@ -42,7 +57,7 @@ export default function Animation3DSection() {
         </h2>
 
         <div className="anim3d-grid">
-          {items.map((item, index) => (
+          {finalItems.map((item, index) => (
             <AnimateOnScroll
               key={index}
               variant="card"

@@ -1,35 +1,53 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import SkeletonMedia from "@/components/SkeletonMedia";
 
-export default function VideoGallery() {
-  const videos = [
-    {
-      num: "01",
-      title: "Featured Film",
-      embedUrl: "https://www.youtube.com/embed/YKV7ap2W-ss?si=nHkSFcd2FUjP6PYu",
-      isFeatured: true,
-    },
-    {
-      num: "02",
-      title: "Cinematic Story",
-      embedUrl: "https://www.youtube.com/embed/1QC9X_QW52k?si=Lmx7A3AwMjMkB_Rm",
-    },
-    {
-      num: "03",
-      title: "Emotional Journey",
-      embedUrl: "https://www.youtube.com/embed/XbIqAguXTS4?si=jwGa3GzdbYv6IM_p",
-    },
-    {
-      num: "04",
-      title: "Visual Poetry",
-      embedUrl: "https://www.youtube.com/embed/2TZszpoCUrI?si=KqrRBKNYZVHWLXhB",
-    },
-    {
-      num: "05",
-      title: "Documentary Reel",
-      embedUrl: "https://www.youtube.com/embed/M__w4K27iO8?si=wNbrluriGiTCYG_U",
-    },
-  ];
+interface VideoGalleryProps {
+  items?: {
+    id: string;
+    title: string;
+    media_type: string;
+    media_url: string;
+  }[] | null;
+}
+
+export default function VideoGallery({ items }: VideoGalleryProps) {
+  const videos = items && items.length > 0
+    ? items
+        .filter((item) => item.media_type === "youtube")
+        .map((item, idx) => ({
+          num: String(idx + 1).padStart(2, "0"),
+          title: item.title,
+          embedUrl: item.media_url,
+          isFeatured: idx === 0,
+        }))
+    : [
+        {
+          num: "01",
+          title: "Featured Film",
+          embedUrl: "https://www.youtube.com/embed/YKV7ap2W-ss?si=nHkSFcd2FUjP6PYu",
+          isFeatured: true,
+        },
+        {
+          num: "02",
+          title: "Cinematic Story",
+          embedUrl: "https://www.youtube.com/embed/1QC9X_QW52k?si=Lmx7A3AwMjMkB_Rm",
+        },
+        {
+          num: "03",
+          title: "Emotional Journey",
+          embedUrl: "https://www.youtube.com/embed/XbIqAguXTS4?si=jwGa3GzdbYv6IM_p",
+        },
+        {
+          num: "04",
+          title: "Visual Poetry",
+          embedUrl: "https://www.youtube.com/embed/2TZszpoCUrI?si=KqrRBKNYZVHWLXhB",
+        },
+        {
+          num: "05",
+          title: "Documentary Reel",
+          embedUrl: "https://www.youtube.com/embed/M__w4K27iO8?si=wNbrluriGiTCYG_U",
+        },
+      ];
 
   return (
     <section className="videos-section" id="videosSection">

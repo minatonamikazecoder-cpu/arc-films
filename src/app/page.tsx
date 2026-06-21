@@ -19,7 +19,7 @@ export default async function Home() {
   const supabase = createPublicClient();
 
   // Fetch data in parallel
-  const [servicesResult, showcaseResult, bannersResult] = await Promise.all([
+  const [servicesResult, workItemsResult, bannersResult, featuredReelResult] = await Promise.all([
     supabase
       .from("services")
       .select("id, title, slug, short_description, icon_svg")
@@ -27,20 +27,25 @@ export default async function Home() {
       .order("sort_order", { ascending: true }),
     supabase
       .from("work_items")
-      .select("id, title, subtitle, slug, media_type, media_url, is_featured, work_categories(name, slug)")
+      .select("id, title, subtitle, slug, media_type, media_url, thumbnail_url, alt_text, aspect_ratio, is_featured, is_home_showcase, work_categories(name, slug)")
       .eq("is_active", true)
-      .eq("is_home_showcase", true)
       .order("sort_order", { ascending: true }),
     supabase
       .from("banners")
       .select("section, media_type, media_url, alt_text, is_active")
       .eq("is_active", true)
       .order("sort_order", { ascending: true }),
+    supabase
+      .from("featured_reel")
+      .select("title, year, video_url, thumbnail_url")
+      .eq("is_active", true)
+      .maybeSingle()
   ]);
 
   const services = servicesResult.data;
-  const showcaseData = showcaseResult.data;
+  const workItems = workItemsResult.data || [];
   const banners = bannersResult.data;
+  const featuredReel = featuredReelResult.data || null;
 
   interface ShowcaseDbRow {
     id: string;
@@ -49,11 +54,17 @@ export default async function Home() {
     slug: string;
     media_type: string;
     media_url: string;
+    thumbnail_url: string | null;
+    alt_text: string | null;
+    aspect_ratio: string | null;
     is_featured: boolean;
+    is_home_showcase: boolean;
     work_categories: { name: string; slug: string } | { name: string; slug: string }[] | null;
   }
 
-  const showcase = (showcaseData as unknown as ShowcaseDbRow[] || []).map((item) => ({
+  const typedWorkItems = workItems as unknown as ShowcaseDbRow[];
+
+  const showcase = typedWorkItems.filter(item => item.is_home_showcase).map((item) => ({
     id: item.id,
     title: item.title,
     subtitle: item.subtitle || undefined,
@@ -66,19 +77,31 @@ export default async function Home() {
       : item.work_categories || null
   }));
 
+  const getItemsByCategory = (slug: string) => {
+    return typedWorkItems.filter(item => {
+      const cat = Array.isArray(item.work_categories) ? item.work_categories[0] : item.work_categories;
+      return cat?.slug === slug;
+    });
+  };
+
+  const videoItems = getItemsByCategory("video");
+  const logoItems = getItemsByCategory("logo");
+  const animation3DItems = getItemsByCategory("3d");
+  const thumbnailItems = getItemsByCategory("thumbnails");
+
   return (
     <main>
       <HeroSection banners={banners || []} />
       <MarqueeStrip />
-      <FeaturedReel />
+      <FeaturedReel reel={featuredReel} />
       <ServicesGrid services={services || []} />
       <WorkShowcase items={showcase} />
       <ParallaxStatement banners={banners || []} />
       <AboutStrip banners={banners || []} />
-      <VideoGallery />
-      <LogoGallery />
-      <Animation3DSection />
-      <ThumbnailGrid />
+      <VideoGallery items={videoItems} />
+      <LogoGallery items={logoItems} />
+      <Animation3DSection items={animation3DItems} />
+      <ThumbnailGrid items={thumbnailItems} />
       <CTASection />
     </main>
   );

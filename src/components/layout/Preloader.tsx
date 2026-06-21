@@ -19,17 +19,17 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     }
     let p = 0;
     const interval = setInterval(() => {
-      p += Math.random() * 15;
+      p += Math.random() * 15 + 5;
       if (p >= 100) {
         p = 100;
         clearInterval(interval);
         setTimeout(() => {
           setIsHidden(true);
           if (onComplete) onComplete();
-        }, 600);
+        }, 200);
       }
       setProgress(p);
-    }, 80);
+    }, 25);
 
     return () => clearInterval(interval);
   }, [onComplete]);

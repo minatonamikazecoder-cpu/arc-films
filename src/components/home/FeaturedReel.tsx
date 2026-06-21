@@ -5,11 +5,25 @@ import SkeletonMedia from "@/components/SkeletonMedia";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { useVideoModal } from "@/components/layout/VideoModal";
 
-export default function FeaturedReel() {
+interface FeaturedReelProps {
+  reel?: {
+    title: string;
+    year: string;
+    video_url: string;
+    thumbnail_url?: string | null;
+  } | null;
+}
+
+export default function FeaturedReel({ reel }: FeaturedReelProps) {
   const { openVideoModal } = useVideoModal();
 
+  const title = reel?.title || "ARC Films — Official Showreel";
+  const year = reel?.year || "2024";
+  const videoUrl = reel?.video_url || "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427499/reel_qfz921.mp4";
+  const thumbnailUrl = reel?.thumbnail_url || "/images/reel.png";
+
   const handlePlayReel = () => {
-    openVideoModal("https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427499/reel_qfz921.mp4");
+    openVideoModal(videoUrl);
   };
 
   return (
@@ -34,7 +48,7 @@ export default function FeaturedReel() {
         <AnimateOnScroll variant="reveal" delay={300}>
           <div className="reel-player" id="reelPlayer">
             <div className="reel-thumb">
-              <SkeletonMedia src="/images/reel.png" alt="ARC Films Showreel" type="image" fill sizes="(max-width: 900px) 100vw, 80vw" />
+              <SkeletonMedia src={thumbnailUrl} alt={title} type="image" fill sizes="(max-width: 900px) 100vw, 80vw" />
               <div className="reel-overlay">
                 <button className="reel-play-btn" id="reelPlayBtn" onClick={handlePlayReel}>
                   <div className="reel-play-ring"></div>
@@ -46,8 +60,8 @@ export default function FeaturedReel() {
               </div>
             </div>
             <div className="reel-info">
-              <span className="reel-year">2024</span>
-              <span className="reel-title-sm">ARC Films — Official Showreel</span>
+              <span className="reel-year">{year}</span>
+              <span className="reel-title-sm">{title}</span>
             </div>
           </div>
         </AnimateOnScroll>

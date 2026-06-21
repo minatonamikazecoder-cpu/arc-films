@@ -30,6 +30,7 @@ export default function HeroSection({ banners }: HeroSectionProps) {
   const [clientsCount, setClientsCount] = useState(0);
 
   useEffect(() => {
+    console.log("HeroSection useEffect started");
     // 1. Scroll opacity handler
     const handleScroll = () => {
       const s = window.scrollY;
@@ -64,7 +65,7 @@ export default function HeroSection({ banners }: HeroSectionProps) {
           statsObserver.disconnect();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
 
     if (statsSection) {
@@ -73,10 +74,18 @@ export default function HeroSection({ banners }: HeroSectionProps) {
 
     // 3. 3D Particle Canvas
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    console.log("Canvas ref in useEffect:", canvas);
+    if (!canvas) {
+      console.log("Canvas ref is null, returning early");
+      return;
+    }
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    console.log("Canvas ctx in useEffect:", ctx);
+    if (!ctx) {
+      console.log("Canvas ctx is null, returning early");
+      return;
+    }
 
     let animationFrameId: number;
     const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
