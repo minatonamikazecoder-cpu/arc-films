@@ -29,8 +29,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         return;
       }
       
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
         // Sign out to clear any cookies and redirect
         await supabase.auth.signOut();
         router.push("/admin/login");

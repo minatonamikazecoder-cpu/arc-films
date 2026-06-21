@@ -31,6 +31,7 @@ export async function createClient() {
         if (prop === 'auth') {
           return {
             getUser: async () => ({ data: { user: null }, error: null }),
+            getSession: async () => ({ data: { session: null }, error: null }),
             signOut: async () => ({ error: null }),
           }
         }
