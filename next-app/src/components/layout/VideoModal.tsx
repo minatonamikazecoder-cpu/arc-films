@@ -30,15 +30,6 @@ export function VideoModalProvider({ children }: { children: React.ReactNode }) 
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const getYouTubeEmbedUrl = (url: string) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    if (match && match[2].length === 11) {
-      return `https://www.youtube.com/embed/${match[2]}?autoplay=1&rel=0`;
-    }
-    return null;
-  };
-
   return (
     <VideoModalContext.Provider value={{ openVideoModal, closeVideoModal }}>
       {children}
@@ -50,16 +41,7 @@ export function VideoModalProvider({ children }: { children: React.ReactNode }) 
               ✕
             </button>
             <div className="video-modal-content">
-              {getYouTubeEmbedUrl(videoUrl) ? (
-                <iframe
-                  src={getYouTubeEmbedUrl(videoUrl)!}
-                  style={{ width: "100%", height: "100%", aspectRatio: "16/9", border: "none" }}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <video id="modalVideo" src={videoUrl} controls autoPlay playsInline />
-              )}
+              <video id="modalVideo" src={videoUrl} controls autoPlay playsInline />
             </div>
           </div>
         </div>

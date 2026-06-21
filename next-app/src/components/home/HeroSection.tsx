@@ -22,7 +22,7 @@ export default function HeroSection({ banners }: HeroSectionProps) {
   const [scrollOpacity, setScrollOpacity] = useState(1);
   
   const heroBanner = banners?.find((b) => b.section === "hero" && b.is_active);
-  const reelUrl = heroBanner?.media_url || "https://youtu.be/e88jccNOcpo";
+  const reelUrl = heroBanner?.media_url || "https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427499/reel_qfz921.mp4";
   
   // Stats counter state
   const [projectsCount, setProjectsCount] = useState(0);
