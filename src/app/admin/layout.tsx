@@ -29,15 +29,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         return;
       }
       
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        // Sign out to clear any cookies and redirect
-        await supabase.auth.signOut();
-        router.push("/admin/login");
-        router.refresh();
-      } else {
-        setCheckingAuth(false);
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        // Wait a tiny bit to make sure it's not a transient state during login redirect
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          // Sign out to clear any cookies and redirect
+          await supabase.auth.signOut();
+          router.push("/admin/login");
+          router.refresh();
+          return;
+        }
       }
+      setCheckingAuth(false);
     };
 
     verifySession();
