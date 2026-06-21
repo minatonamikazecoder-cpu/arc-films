@@ -6,7 +6,7 @@ export function createClient() {
 
   if (!url || !anonKey) {
     if (typeof window !== 'undefined') {
-      console.warn("Supabase NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY are missing. Using mock proxy client.");
+      console.warn("Supabase credentials missing in browser client. NEXT_PUBLIC_SUPABASE_URL:", url, "NEXT_PUBLIC_SUPABASE_ANON_KEY:", anonKey ? "FOUND(Truncated)" : "MISSING");
     }
     // Return a dummy client during build time if environment variables are missing
     const createQueryPromise = (): any => {
