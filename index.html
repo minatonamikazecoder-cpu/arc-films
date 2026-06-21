@@ -119,7 +119,7 @@
           <span class="btn-inner">View Our Work</span>
           <span class="btn-arrow">→</span>
         </a>
-        <button class="btn-play" id="heroPlay" data-video="https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427499/reel_qfz921.mp4">
+        <button class="btn-play" id="heroPlay" data-video="https://youtu.be/e88jccNOcpo">
           <span class="btn-play-ring"></span>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M6 3.5L14.5 9L6 14.5V3.5Z" fill="white"/>
@@ -196,7 +196,7 @@
         <div class="reel-thumb">
           <img src="assets/images/reel.png" alt="ARC Films Showreel" loading="lazy">
           <div class="reel-overlay">
-            <button class="reel-play-btn" id="reelPlayBtn" data-video="https://res.cloudinary.com/dkodvlw5s/video/upload/v1737427499/reel_qfz921.mp4">
+            <button class="reel-play-btn" id="reelPlayBtn" data-video="https://youtu.be/e88jccNOcpo">
               <div class="reel-play-ring"></div>
               <div class="reel-play-ring delay"></div>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -797,9 +797,10 @@
     <div class="video-modal-inner">
       <button class="video-modal-close" id="videoModalClose">✕</button>
       <div class="video-modal-content">
-        <video id="modalVideo" controls>
+        <video id="modalVideo" controls style="display: none; width: 100%;">
           <source src="" type="video/mp4">
         </video>
+        <div id="modalIframeContainer" style="display: none; width: 100%; aspect-ratio: 16/9;"></div>
       </div>
     </div>
   </div>
