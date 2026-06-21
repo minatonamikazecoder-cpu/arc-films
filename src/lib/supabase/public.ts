@@ -3,7 +3,7 @@ import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 // This is a strictly public, anonymous client meant ONLY for Server Components 
 // that do NOT need user authentication (like public portfolio data).
 // By avoiding `cookies()`, Next.js 15 can statically prerender these pages at build time.
-export function createPublicClient() {
+export function createPublicClient(): any {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
