@@ -138,7 +138,7 @@ export default function CTASection({
                 </svg>
               </a>
               <a
-                href="mailto:yashpancholi0602@gmail.com"
+                href="mailto:yashpancholi111@gmail.com"
                 className="cta-social-link"
                 aria-label="Email"
               >

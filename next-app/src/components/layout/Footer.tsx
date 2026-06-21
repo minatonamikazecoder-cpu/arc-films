@@ -60,7 +60,7 @@ export default function Footer() {
               <a href="https://www.linkedin.com/in/pancholi-yash-b161792b5/" target="_blank" rel="noopener noreferrer">
                 LinkedIn
               </a>
-              <a href="mailto:yashpancholi0602@gmail.com">Email Us</a>
+              <a href="mailto:yashpancholi111@gmail.com">Email Us</a>
             </div>
           </div>
         </div>
