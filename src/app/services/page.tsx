@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import SkeletonMedia from "@/components/SkeletonMedia";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import CTASection from "@/components/home/CTASection";
 
@@ -22,7 +22,7 @@ interface ServiceRow {
 }
 
 export default async function ServicesPage() {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   const { data: dbServices } = await supabase
     .from("services")

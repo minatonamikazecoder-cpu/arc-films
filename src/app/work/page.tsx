@@ -1,11 +1,11 @@
 import React from "react";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import WorkPageClient, { Category, WorkItem } from "./WorkPageClient";
 
 export const revalidate = 31536000; // Revalidate on-demand (indefinite cache, 1 year TTL)
 
 export default async function WorkPage() {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   const [categoriesResult, workItemsResult] = await Promise.all([
     supabase

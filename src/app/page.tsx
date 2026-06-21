@@ -1,5 +1,5 @@
 import React from "react";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import HeroSection from "@/components/home/HeroSection";
 import MarqueeStrip from "@/components/home/MarqueeStrip";
 import FeaturedReel from "@/components/home/FeaturedReel";
@@ -16,7 +16,7 @@ import CTASection from "@/components/home/CTASection";
 export const revalidate = 31536000; // Revalidate on-demand (indefinite cache, 1 year TTL)
 
 export default async function Home() {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   // Fetch data in parallel
   const [servicesResult, showcaseResult, bannersResult] = await Promise.all([
