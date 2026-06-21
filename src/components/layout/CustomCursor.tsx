@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function CustomCursor() {
+  const pathname = usePathname();
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [follower, setFollower] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (pathname?.startsWith("/admin")) return;
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
 
@@ -60,6 +63,7 @@ export default function CustomCursor() {
     };
   }, []);
 
+  if (pathname?.startsWith("/admin")) return null;
   if (!isVisible) return null;
 
   return (

@@ -1,16 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface PreloaderProps {
   onComplete?: () => void;
 }
 
 export default function Preloader({ onComplete }: PreloaderProps) {
+  const pathname = usePathname();
   const [progress, setProgress] = useState(0);
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
+    if (pathname?.startsWith("/admin")) {
+      if (onComplete) onComplete();
+      return;
+    }
     let p = 0;
     const interval = setInterval(() => {
       p += Math.random() * 15;
@@ -27,6 +33,8 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
     return () => clearInterval(interval);
   }, [onComplete]);
+
+  if (pathname?.startsWith("/admin")) return null;
 
   return (
     <div className={`preloader ${isHidden ? "hidden" : ""}`} id="preloader">

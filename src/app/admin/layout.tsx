@@ -12,6 +12,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const supabase = createClient();
   const [unreadCount, setUnreadCount] = useState(0);
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
   const fetchUnreadCount = useCallback(async () => {
     const { count } = await supabase
@@ -22,12 +23,34 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }, [supabase]);
 
   useEffect(() => {
+    const verifySession = async () => {
+      if (pathname === "/admin/login") {
+        setCheckingAuth(false);
+        return;
+      }
+      
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        // Sign out to clear any cookies and redirect
+        await supabase.auth.signOut();
+        router.push("/admin/login");
+        router.refresh();
+      } else {
+        setCheckingAuth(false);
+      }
+    };
+
+    verifySession();
+  }, [pathname, supabase, router]);
+
+  useEffect(() => {
+    if (checkingAuth || pathname === "/admin/login") return;
     fetchUnreadCount();
 
     // Query count every 10 seconds to keep badge fresh
     const interval = setInterval(fetchUnreadCount, 10000);
     return () => clearInterval(interval);
-  }, [fetchUnreadCount]);
+  }, [fetchUnreadCount, checkingAuth, pathname]);
 
   const [syncing, setSyncing] = useState(false);
 
@@ -59,6 +82,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (pathname === "/admin/login") {
     return <>{children}</>;
+  }
+
+  if (checkingAuth) {
+    return null;
   }
 
   return (
