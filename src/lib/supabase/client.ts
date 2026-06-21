@@ -1,12 +1,8 @@
 import { createBrowserClient } from '@supabase/ssr'
-
 export function createClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-  if (!url || !anonKey) {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     if (typeof window !== 'undefined') {
-      console.warn("Supabase credentials missing in browser client. NEXT_PUBLIC_SUPABASE_URL:", url, "NEXT_PUBLIC_SUPABASE_ANON_KEY:", anonKey ? "FOUND(Truncated)" : "MISSING");
+      console.warn("Supabase credentials missing in browser client. NEXT_PUBLIC_SUPABASE_URL:", process.env.NEXT_PUBLIC_SUPABASE_URL, "NEXT_PUBLIC_SUPABASE_ANON_KEY:", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? "FOUND(Truncated)" : "MISSING");
     }
     // Return a dummy client during build time if environment variables are missing
     const createQueryPromise = (): any => {
@@ -50,5 +46,8 @@ export function createClient() {
     return clientProxy
   }
 
-  return createBrowserClient(url, anonKey)
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  )
 }
